@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+    <title>Correlativas</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" sizes="16x16" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icon32.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="assets/icon64.png">
+    <link rel="icon" type="image/svg" sizes="any" href="assets/icon.svg">
+    <link rel="stylesheet" href="estilo.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+            crossorigin="anonymous"></script>
+    <script src="codigo.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body>
+<div id="obligatorias"></div>
+<div class="container">
+    <div class="container-title">Electivas</div>
+    <ul id="electivas" class="materias">
+    </ul>
+    <div class="container-body">
+        <form class="form-inline" action="#">
+            <input type="text" id="in-nomElect" class="form-control" placeholder="Nombre de la electiva" maxlength="32">
+            <select class="form-control" id="sl-hrsElect">
+                <option value="" disabled selected>Horas</option>
+                <option value="2">2 horas</option>
+                <option value="3">3 horas</option>
+                <option value="4">4 horas</option>
+                <option value="6">6 horas</option>
+                <option value="8">8 horas</option>
+            </select>
+            <input type="button" id="bt-newElect" class="btn btn-primary" value="Agregar">
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="col-sm-6">
+        <div class="container-title">Información</div>
+        <div class="container-body">
+
+            <div class="col-md-8">
+                Horas Obligatorias: <span id="sp-oblact"></span> / <span id="sp-obltot"></span> (<span id="sp-curact"></span> cursadas)<br>
+            </div>
+
+            <div class="col-md-4">
+                <progress id="sp-oblact-progress" class="progress" value="0" max="100" aria-describedby="example-caption-1"></progress>
+            </div>
+
+            <div class="col-md-8">
+                Horas Electivas: <span id="sp-eleact"></span> / <span id="sp-eletot"></span>
+            </div>
+
+            <div class="col-md-4">
+                <progress id="sp-eleact-progress" class="progress" value="0" max="100" aria-describedby="example-caption-1"></progress>
+            </div>
+
+            <div class="col-md-8">
+                Progreso: <span id="sp-progreso"></span>% (<span id="sp-matapr"></span> materias)
+            </div>
+
+            <div class="col-md-4">
+                <progress id="sp-progreso-progress" class="progress" value="0" max="100" aria-describedby="example-caption-1"></progress>
+            </div>
+
+            <div class="col-xs-12">
+                <input type="button" class="btn btn-success" id="bt-guardar" value="Guardar datos">
+                <input type="button" class="btn btn-danger" id="bt-borrar" value="Borrar datos">
+            </div>
+
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="container-title">Carrera y plan</div>
+        <div class="container-body">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="in-nombreCarrera">Carrera de Ingeniería</label>
+                    <select class="form-control" id="in-nombreCarrera" placeholder="Planelegido" maxlength="32">
+                        <option>Sistemas de Información</option>
+                        <option>Mecánica</option>
+                        <option>Industrial</option>
+                        <option>Civil</option>
+                        <option>Eléctrica</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="in-nombrePlan">Plan de Estudio</label>
+                    <select class="form-control" id="in-nombrePlan" placeholder="Planelegido" maxlength="32">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
