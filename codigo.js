@@ -97,8 +97,8 @@ function iniciar() {
     $("#sp-obltot").text(horasObligatoriasTotales);
     $("#sp-eletot").text(horasElectivasTotales);
 
-    $("#sp-oblact-progress").attr('max', horasObligatoriasTotales);
-    $("#sp-eleact-progress").attr('max', horasElectivasTotales);
+    $("#sp-oblact-progress").attr('aria-valuemax', horasObligatoriasTotales);
+    $("#sp-eleact-progress").attr('aria-valuemax', horasElectivasTotales);
 
     $('#bt-newElect').click(function() {
         var nombre = $("#in-nomElect").val();
@@ -144,12 +144,13 @@ function Materia(nombre, anio, horas, condicion, estado, cursadasParaCursar, apr
 
 function dibujarMaterias() {
     var anoDOM;
+
     for (var i=0; i<materias.length; i++) {
         var mat = materias[i];
         anoDOM = 'anio-' + mat.anio;
         if (!document.getElementById(anoDOM)) {
-            var newAno = '<div class="container"><div class="container-title">'+mat.anio+
-                '° año</div><ul class="materias" id="'+anoDOM+'"></ul></div>';
+            var newAno = '<div class="col-md-6"><div class="card card-outline-primary mt-3"><div class="card-block"><h5 class="card-title">'+mat.anio+
+                '° año</h5><ul class="materias" id="'+anoDOM+'"></ul></div></div></div>';
             $(newAno).appendTo("#obligatorias");
         }
         var matJQ = $('<li id="materia-'+i+'">');
@@ -157,7 +158,6 @@ function dibujarMaterias() {
         matJQ.addClass(estados[mat.estado]);
         matJQ.data("id", i);
         $('<span class="nombre-mat">'+materias[i].nombre+'</span>').appendTo(matJQ);
-        $('<span class="estado-mat">'+estadosDOM[materias[i].estado]+'</span>').appendTo(matJQ);
         matJQ.appendTo('#'+anoDOM);
         matJQ.click(function() {
             var idMateria = $(this).data("id");
@@ -165,6 +165,16 @@ function dibujarMaterias() {
             setEstado(idMateria, estado);
         });
     }
+
+    var electivas = '<div class="col-md-6">' +
+                        '<div class="card card-outline-primary mt-3">' +
+                            '<h6 class="card-title">Electivas</h6>' +
+                            '<ul id="electivas" class="materias"></ul>'
+                        '</div>' +
+                    '</div>';
+
+    $(electivas).appendTo("#obligatorias");
+
     $('#'+anoDOM).after('<div class="container-body"><form><label for="cb-excepcion">'+
         '<input id="cb-excepcion" type="checkbox" disabled>'+
         'Pedir excepción</label></form></div>');
@@ -199,7 +209,6 @@ function setEstado(idMateria, nuevoEstado) {
         materiaJS.removeClass();
         materiaJS.addClass(condiciones[materia.condicion]);
         materiaJS.addClass(estados[nuevoEstado]);
-        $(materiaDOM+' .estado-mat').text(estadosDOM[nuevoEstado]);
         var lista = materia.cascada;
         for (var i=0; i<lista.length; i++) {
             calcularCondicion(lista[i]);
@@ -275,16 +284,16 @@ function modificarProgreso(hrsObl, hrsEle) {
     //Modificar progreso en números y en barras de status
 
     $("#sp-oblact").text(horasObligatoriasActuales);
-    $("#sp-oblact-progress").attr('value', horasObligatoriasActuales);
+    $("#sp-oblact-progress").attr('aria-valuenow', horasObligatoriasActuales);
 
     $("#sp-eleact").text(horasElectivasActuales);
-    $("#sp-eleact-progress").attr('value', horasElectivasActuales);
+    $("#sp-eleact-progress").attr('aria-valuenow', horasElectivasActuales);
 
     $("#sp-matapr").text(materiasAprobadas);
-    $("#sp-matapr-progress").attr('value', materiasAprobadas);
+    $("#sp-matapr-progress").attr('aria-valuenow', materiasAprobadas);
 
     $("#sp-progreso").text(progreso.toFixed(2));
-    $("#sp-progreso-progress").attr('value', progreso.toFixed(0));
+    $("#sp-progreso-progress").attr('aria-valuenow', progreso.toFixed(0));
 }
 
 function modificarCursadas(hrsCur) {

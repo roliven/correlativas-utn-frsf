@@ -9,7 +9,7 @@ form {
     text-align: center;
 }
 
-.container {
+.container, .container-fluid {
     border-radius: 5px;
     border: 1px solid #B7B7B7;
     background: #fff;
@@ -39,7 +39,7 @@ form {
     display: inline-block;
     cursor: pointer;
     margin: 2px;
-    min-width: 150px;
+    min-width: 220px;
     min-height: 32px;
     vertical-align: top;
     /* For IE 7 */
@@ -51,21 +51,23 @@ form {
     color: #808080;
 }
 .m-cursable {
-    border: 1px solid #808080;
+    border: 1px solid #d9edf7;
     color: #808080;
 }
 .m-aprobable {
-    border: 1px solid #3c4d68;
+    border: 1px solid #dff0d8;
     color: #3c4d68;
 }
 .m-nocursada {
     background: #FFF;
 }
 .m-cursada {
-    background: #ccddff;
+    border: 1px solid #bcdff1;
+    background: #d9edf7;
 }
 .m-aprobada {
-    background: #a8c5ff;
+    border: 1px solid #3c763d;
+    background: #dff0d8;
 }
 
 .nombre-mat {
@@ -92,4 +94,8 @@ form {
         width: 100%;
         padding: 8px;
     }
+}
+
+#obligatorias .card-block {
+    padding: 0.75rem !important;
 }
