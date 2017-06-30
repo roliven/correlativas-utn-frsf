@@ -20,6 +20,7 @@ $(document).ready(function() {
             var nomPlan = window.location.hash.substring(1);
         } else {
             var nomPlan = "isi08";
+            // var nomPlan = "mec";
         }
         var script = document.createElement('script');
         script.src = nomPlan+".js";
@@ -145,12 +146,16 @@ function Materia(nombre, anio, horas, condicion, estado, cursadasParaCursar, apr
 function dibujarMaterias() {
     var anoDOM;
 
-    for (var i=0; i<materias.length; i++) {
+    for (var i=1; i<materias.length; i++) {
         var mat = materias[i];
         anoDOM = 'anio-' + mat.anio;
         if (!document.getElementById(anoDOM)) {
-            var newAno = '<div class="col-md-6"><div class="card card-outline-primary mt-3"><div class="card-block"><h5 class="card-title">'+mat.anio+
-                '° año</h5><ul class="materias" id="'+anoDOM+'"></ul></div></div></div>';
+            var newAno = '<div class="col-md-6">' +
+                            '<div class="card card-outline-primary mt-3">' +
+                                '<div class="card-header"><h6>' + mat.anio + '° año</h6></div>' +
+                                '<div class="card-block">' +
+                                    '<ul class="materias" id="'+anoDOM+'"></ul>' +
+                                '</div></div></div>';
             $(newAno).appendTo("#obligatorias");
         }
         var matJQ = $('<li id="materia-'+i+'">');
@@ -168,8 +173,10 @@ function dibujarMaterias() {
 
     var electivas = '<div class="col-md-6">' +
                         '<div class="card card-outline-primary mt-3">' +
-                            '<h6 class="card-title">Electivas</h6>' +
-                            '<ul id="electivas" class="materias"></ul>'
+                            '<div class="card-header">' +
+                                '<h6>Electivas</h6>' +
+                            '</div>' +
+                                '<ul id="electivas" class="materias"></ul>' +
                         '</div>' +
                     '</div>';
 
