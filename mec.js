@@ -118,6 +118,6 @@ cargarPlan(10, [
         cursadasParaCursar: [27], aprobadasParaCursar: [18,20,21,22,24,25], aprobadasParaRendir: [27]
     }, {
         ord: 39, nombre: "Práctica Supervisada", horas: 0,
-        cursadasParaCursar: [], aprobadasParaCursar: [], aprobadasParaRendir: []
+        cursadasParaCursar: [26,27,28,29,30,31,32,33], aprobadasParaCursar: [17,18,19,20,21,22,23,24,25], aprobadasParaRendir: [26,27,28,29,30,31,32,33]
     }]
 ]);
