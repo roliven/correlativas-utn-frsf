@@ -96,10 +96,10 @@ form {
     }
 }
 
-.card-header .h6, .card-header h6 {
+#app .card-header .h6, .card-header h6 {
     color: white;
 }
 
-.card-header{
+#app .card-header{
     background-color: #0275d8;
 }
