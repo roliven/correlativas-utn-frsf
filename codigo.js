@@ -1,42 +1,78 @@
 
 //statusData
-var estados = ['m-nocursada', 'm-cursada', 'm-aprobada'];
-var estadosDOM = ['(no cursada)', '(regular)', '(aprobada)'];
-var condiciones = ['m-nocursable', 'm-cursable', 'm-aprobable'];
+let estados = ['m-nocursada', 'm-cursada', 'm-aprobada'];
+let estadosDOM = ['(no cursada)', '(regular)', '(aprobada)'];
+let condiciones = ['m-nocursable', 'm-cursable', 'm-aprobable'];
 
 //variables
-var materias = new Array();
-var horasObligatoriasTotales = 0;
-var horasObligatoriasActuales = 0;
-var horasElectivasTotales = 0;
-var horasElectivasActuales = 0;
-var horasCursadas = 0;
-var materiasAprobadas = 0;
-var excepcion;
+let materias = [];
+let horasObligatoriasTotales = 0;
+let horasObligatoriasActuales = 0;
+let horasElectivasTotales = 0;
+let horasElectivasActuales = 0;
+let horasCursadas = 0;
+let materiasAprobadas = 0;
+let excepcion;
 
-$(document).ready(function() {
+var app = new Vue({
+    el: '#app',
+    data:{
+        carreraElegida: ''
+    },
+    methods:{
+        elegirCarrera(nombreCarrera, nombreCarreraAnterior){
+            let script = document.createElement('script');
+
+            if(nombreCarrera !== ''){
+                if(nombreCarreraAnterior !== nombreCarrera){
+                    document.getElementById('obligatorias').innerHTML='';
+                    if(nombreCarrera){
+                        script.src = nombreCarrera+".js";
+                        document.body.appendChild(script);
+                    }
+                }
+
+                if(nombreCarreraAnterior){
+                    script.src = nombreCarreraAnterior+".js";
+                    document.body.removeChild(script);
+                }
+            }
+        }
+    },
+    watch: {
+        carreraElegida: {
+            handler: function(val, oldVal){
+                this.elegirCarrera(val, oldVal)
+            },
+            deep: true
+        }
+    }
+});
+
+//TODO: Arreglar guardado y carga de correlatividades, para evitar llenar una y otra vez la grilla.
+function cargarLegacy(){
     if (!localStorage.getItem("co-materias")) {
+        let nombrePlan = '';
         if (window.location.hash) {
-            var nomPlan = window.location.hash.substring(1);
+            nombrePlan = window.location.hash.substring(1);
         } else {
-            var nomPlan = "isi08";
-            // var nomPlan = "mec";
+            nombrePlan = "isi";
         }
         var script = document.createElement('script');
-        script.src = nomPlan+".js";
+        script.src = nombrePlan+".js";
         document.body.appendChild(script);
     } else {
         cargarLocal();
     }
-});
+};
 
 function cargarLocal() {
     horasElectivasTotales = parseInt(localStorage.getItem("co-elect"));
     materias = JSON.parse(localStorage.getItem("co-materias"));
-    var electivas;
+    let electivas;
 
-    for (var materia of materias){
-        if(materia !== null && materia !== undefined){
+    for (let materia of materias){
+        if(materia){
             horasObligatoriasTotales += materia.horas;
             if(materia.estado > 0){
                 horasCursadas += materia.horas;
@@ -52,16 +88,16 @@ function cargarLocal() {
     excepcion.checked = ("true" == localStorage.getItem("co-excepcion"));
     electivas = JSON.parse(localStorage.getItem("co-electivas"));
 
-    var i = 0;
+    let i = 0;
     while (i < electivas.length)
         crearElectiva(electivas[i++], electivas[i++]);
 }
 
 function cargarPlan(hrsElectivas, plan) {
     horasElectivasTotales = hrsElectivas;
-    for (var i=0; i<plan.length; i++) {
-        for (var j=0; j<plan[i].length; j++) {
-            var condicion;
+    for (let i=0; i<plan.length; i++) { //Recorro los niveles (años) del plan
+        for (let j=0; j<plan[i].length; j++) { //Recorro las materias de cada nivel
+            let condicion;
             if (plan[i][j].cursadasParaCursar.length==0 && plan[i][j].aprobadasParaCursar.length==0) {
                 if (plan[i][j].aprobadasParaRendir.length==0) {
                     condicion = 2;
@@ -71,12 +107,12 @@ function cargarPlan(hrsElectivas, plan) {
             } else {
                 condicion = 0;
             }
-            var cascada = new Array();
-            var mat = plan[i][j];
+            let cascada = [];
+            let mat = plan[i][j];
 
-            for (var k=i; k<plan.length; k++) {
-                for (var l=0; l<plan[k].length; l++) {
-                    var cor = plan[k][l];
+            for (let k=i; k<plan.length; k++) {
+                for (let l=0; l<plan[k].length; l++) {
+                    let cor = plan[k][l];
                     if ($.inArray(mat.ord, cor.cursadasParaCursar)!=-1 || $.inArray(mat.ord, cor.aprobadasParaCursar)!=-1 || $.inArray(mat.ord, cor.aprobadasParaRendir)!=-1) {
                         cascada.push(cor.ord);
                     }
@@ -108,6 +144,7 @@ function iniciar() {
         $("#in-nomElect").val('');
     });
     $('#bt-guardar').click(function() {
+        localStorage.setItem("carrera-elegida", JSON.stringify(app.carreraElegida));
         localStorage.setItem("co-materias", JSON.stringify(materias));
         localStorage.setItem("co-elect", horasElectivasTotales.toString());
         localStorage.setItem("co-excepcion", excepcion.checked.toString());
@@ -151,9 +188,9 @@ function dibujarMaterias() {
         anoDOM = 'anio-' + mat.anio;
         if (!document.getElementById(anoDOM)) {
             var newAno = '<div class="col-md-6">' +
-                            '<div class="card card-outline-primary mt-3">' +
+                            '<div class="card card-outline-primary mt-2">' +
                                 '<div class="card-header"><h6>' + mat.anio + '° año</h6></div>' +
-                                '<div class="card-block">' +
+                                '<div class="card-block p-1">' +
                                     '<ul class="materias" id="'+anoDOM+'"></ul>' +
                                 '</div></div></div>';
             $(newAno).appendTo("#obligatorias");
@@ -172,7 +209,7 @@ function dibujarMaterias() {
     }
 
     var electivas = '<div class="col-md-6">' +
-                        '<div class="card card-outline-primary mt-3">' +
+                        '<div class="card card-outline-primary mt-2">' +
                             '<div class="card-header">' +
                                 '<h6>Electivas</h6>' +
                             '</div>' +
