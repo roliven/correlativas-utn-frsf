@@ -22,7 +22,7 @@ var app = new Vue({
     methods:{
         elegirCarrera(nombreCarrera, nombreCarreraAnterior){
             let script = document.createElement('script');
-
+            //TODO: Vaciar marcas de progreso si se cambia la carrera
             if(nombreCarrera !== ''){
                 if(nombreCarreraAnterior !== nombreCarrera){
                     document.getElementById('obligatorias').innerHTML='';
@@ -328,16 +328,21 @@ function modificarProgreso(hrsObl, hrsEle) {
     //Modificar progreso en números y en barras de status
 
     $("#sp-oblact").text(horasObligatoriasActuales);
-    $("#sp-oblact-progress").attr('aria-valuenow', horasObligatoriasActuales);
 
+    let porcentajeObligatorias = parseInt(horasObligatoriasActuales) * 100/parseInt(horasObligatoriasTotales);
+    document.getElementById('sp-oblact-progress').setAttribute('aria-valuenow', porcentajeObligatorias);
+    document.getElementById('sp-oblact-progress').style.width = porcentajeObligatorias + '%';
+
+    let porcentajeElectivas = parseInt(horasElectivasActuales) * 100/parseInt(horasElectivasTotales);
     $("#sp-eleact").text(horasElectivasActuales);
-    $("#sp-eleact-progress").attr('aria-valuenow', horasElectivasActuales);
+    document.getElementById('sp-eleact-progress').setAttribute('aria-valuenow', porcentajeElectivas);
+    document.getElementById('sp-eleact-progress').style.width = porcentajeElectivas + '%';
 
     $("#sp-matapr").text(materiasAprobadas);
-    $("#sp-matapr-progress").attr('aria-valuenow', materiasAprobadas);
 
     $("#sp-progreso").text(progreso.toFixed(2));
-    $("#sp-progreso-progress").attr('aria-valuenow', progreso.toFixed(0));
+    document.getElementById('sp-progreso-progress').setAttribute('aria-valuenow', progreso.toFixed(0));
+    document.getElementById('sp-progreso-progress').style.width = progreso.toFixed(0) + '%';
 }
 
 function modificarCursadas(hrsCur) {
