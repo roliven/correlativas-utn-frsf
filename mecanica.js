@@ -93,7 +93,7 @@ cargarPlan(10, [
         ord: 31, nombre: "Electrotecnia y Máq. Eléctricas", horas: 4,
         cursadasParaCursar: [12,13], aprobadasParaCursar: [1,3,4], aprobadasParaRendir: [12,13]
     }, {
-        ord: 32, nombre: "Electrónica y Sistemas de Control", horas: 5,
+        ord: 32, nombre: "Electrónica y Sist. de Control", horas: 5,
         cursadasParaCursar: [12,13], aprobadasParaCursar: [1,3,4], aprobadasParaRendir: [12,13]
     }, {
         ord: 33, nombre: "Tecnología de Fabricación", horas: 4,
@@ -102,7 +102,7 @@ cargarPlan(10, [
         ord: 34, nombre: "Mantenimiento", horas: 2,
         cursadasParaCursar: [27,31], aprobadasParaCursar: [9,11,13,18,20,22,24], aprobadasParaRendir: [27,31]
     }, {
-        ord: 35, nombre: "Máquinas Alternativas y Turbo Máquinas", horas: 4,
+        ord: 35, nombre: "Máq. Alternativas y Turbo Máquinas", horas: 4,
         cursadasParaCursar: [28,30], aprobadasParaCursar: [17], aprobadasParaRendir: [28,30]
     }, {
         ord: 36, nombre: "Instalaciones Industriales", horas: 5,

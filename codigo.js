@@ -188,8 +188,8 @@ function dibujarMaterias() {
         anoDOM = 'anio-' + mat.anio;
         if (!document.getElementById(anoDOM)) {
             var newAno = '<div class="col-md-6">' +
-                            '<div class="card card-outline-primary mt-2">' +
-                                '<div class="card-header"><h6>' + mat.anio + '° año</h6></div>' +
+                            '<div class="card card-outline-primary mb-2">' +
+                                '<div class="card-header p-2"><h6>' + mat.anio + '° año</h6></div>' +
                                 '<div class="card-block p-1">' +
                                     '<ul class="materias" id="'+anoDOM+'"></ul>' +
                                 '</div></div></div>';
@@ -209,8 +209,8 @@ function dibujarMaterias() {
     }
 
     var electivas = '<div class="col-md-6">' +
-                        '<div class="card card-outline-primary mt-2">' +
-                            '<div class="card-header">' +
+                        '<div class="card card-outline-primary mb-2">' +
+                            '<div class="card-header p-2">' +
                                 '<h6>Electivas</h6>' +
                             '</div>' +
                                 '<ul id="electivas" class="materias"></ul>' +

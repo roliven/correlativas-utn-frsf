@@ -21,21 +21,21 @@
 <body>
 
 <div id="app" class="row">
-    <div class="col-1"></div>
-    <div class="col-10">
-        <div class="container-fluid">
+    <!--<div class="col-xl-1"></div>-->
+    <div class=" col-12 ">
+        <div class="container-fluid ml-2 mr-2">
             <div class="row">
 
-                <div class="col-md-8">
-                    <div id="obligatorias" class="row">
+                <div class="col-md-9">
+                    <div id="obligatorias" class="row pt-2">
                         <h6>Seleccioná tu carrera en el panel de la derecha</h6>
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="card-group">
                         <div class="card mt-2 card-outline-primary">
-                            <div class="card-block">
+                            <div class="card-block p-2">
                                 <h5 class="card-title">Información</h5>
                                 <div class="form-group">
                                     Horas Obligatorias: <span id="sp-oblact"></span> / <span id="sp-obltot"></span> (<span id="sp-curact"></span> cursadas)
@@ -62,7 +62,7 @@
                     </div>
                     <div class="card-group">
                         <div class="card mt-2 card-outline-primary">
-                            <div class="card-block">
+                            <div class="card-block p-2">
                                 <h5 class="card-title">Carrera y plan</h5>
 
                                 <div class="form-group">
@@ -85,20 +85,20 @@
                                     <!--</select>-->
                                 <!--</div>-->
 
-                                <a href="#" class="btn btn-primary" id="bt-cargar-plan">Cargar plan</a>
+                                <!--<a href="#" class="btn btn-primary" id="bt-cargar-plan">Cargar plan</a>-->
                             </div>
                         </div>
                     </div>
                     <div class="card-group">
                         <div class="card mt-2 mb-2 card-outline-primary">
-                            <div class="card-block">
+                            <div class="card-block p-2">
                                 <h5 class="card-title">Electivas</h5>
                                 <div class="form-group" action="#">
                                     <div class="row">
-                                        <div class="col-12 col-sm-6">
+                                        <div class="col-12 col-sm-7">
                                             <input type="text" id="in-nomElect" class="form-control" placeholder="Nombre de la electiva" maxlength="32">
                                         </div>
-                                        <div class="col-12 col-sm-6">
+                                        <div class="col-12 col-sm-5">
                                             <select class="form-control" id="sl-hrsElect">
                                                 <option value="" disabled selected>Horas</option>
                                                 <option value="2">2 horas</option>
