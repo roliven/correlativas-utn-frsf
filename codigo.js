@@ -28,6 +28,7 @@ var app = new Vue({
                     document.getElementById('obligatorias').innerHTML='';
                     if(nombreCarrera){
                         script.src = nombreCarrera+".js";
+                        limpiarProgreso();
                         document.body.appendChild(script);
                     }
                 }
@@ -64,7 +65,14 @@ function cargarLegacy(){
     } else {
         cargarLocal();
     }
-};
+}
+
+function limpiarProgreso(){
+    horasObligatoriasTotales = 0;
+    horasObligatoriasActuales = 0;
+    horasElectivasTotales = 0;
+    horasElectivasActuales = 0;
+}
 
 function cargarLocal() {
     horasElectivasTotales = parseInt(localStorage.getItem("co-elect"));
