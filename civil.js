@@ -124,7 +124,7 @@ cargarPlan(14, [
         cursadasParaCursar: [29,30], aprobadasParaCursar: [16,17,18,21], aprobadasParaRendir: [29,30]
     }, {
         ord: 39, nombre: "Vías de Comunicación II", horas: 4,
-        cursadasParaCursar: [19], aprobadasParaCursar: [9,13], aprobadasParaRendir: [19]
+        cursadasParaCursar: [26,37], aprobadasParaCursar: [16,18,19,20], aprobadasParaRendir: [26,37]
     }, {
         ord: 40, nombre: "Proyecto Final Pt. 1", horas: 2,
         cursadasParaCursar: [28,30,31,32], aprobadasParaCursar: [11,14,16,18,20,21], aprobadasParaRendir: [28,30,31,32]
